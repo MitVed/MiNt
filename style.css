@@ -103,22 +103,22 @@ h1 {
 /* ---------- BACKGROUNDS (Specific Images) ---------- */
 .section-one { 
     background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), 
-                      url("images/mrg.JPG"); 
+                      url("images/2N4A1284.jpg"); 
 }
 
 .section-two { 
     background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), 
-                      url("images/phu-qoc.png"); 
+                      url("images/PhuQoc.jpg"); 
 }
 
 .section-three { 
     background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), 
-                      url("images/uw.jpg"); 
+                      url("images/VietnamUW.jpg"); 
 }
 
 .section-four { 
     background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), 
-                      url("images/anniver.jpg"); 
+                      url("images/anniversary.jpg"); 
 }
 
 .together { letter-spacing: 0; }
@@ -138,4 +138,5 @@ h1 {
     .glass { padding: 30px 34px; }
     h1 { letter-spacing: 0.3em; }
     .hero-line { letter-spacing: 0.3em; margin-right: -0.3em; }
+
 }
