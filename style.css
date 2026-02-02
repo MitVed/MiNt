@@ -1,0 +1,141 @@
+/* ---------- RESET & BASE ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --really-green: oklch(88.14% 0.203 158.82);
+    --animation-speed: 1200ms; /* Snappier speed for better feel */
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background: #000;
+}
+
+/* ---------- SCROLL ---------- */
+.main-content {
+    height: 100vh;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ---------- SECTION ---------- */
+.section {
+    height: 100vh;
+    scroll-snap-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+}
+
+/* ---------- GLASS CARD ---------- */
+.glass {
+    padding: 42px 70px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 25px 45px rgba(0,0,0,0.45), inset 0 0 30px rgba(255,255,255,0.08);
+    text-align: center;
+}
+
+h1 {
+    color: #fff;
+    font-weight: 900;
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    text-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    letter-spacing: 0.45em;
+}
+
+/* ---------- OPTIMIZED BREATHING LOGIC ---------- */
+.hero-line span {
+    display: inline-block;
+    white-space: break-spaces;
+    transform: translateZ(0); /* Force GPU Rendering */
+    will-change: transform, filter; /* Pre-optimize browser */
+}
+
+/* Animation triggered by JS Observer */
+.section-four.visible .hero-line span {
+    animation: breath var(--animation-speed) cubic-bezier(0.4, 0, 0.2, 1) 
+               calc(var(--index) * 60ms) infinite alternate;
+}
+
+@keyframes breath {
+    0% {
+        transform: scale(1) translateY(0);
+        filter: drop-shadow(0 0 0px transparent);
+    }
+    100% {
+        transform: scale(1.12) translateY(-8px);
+        color: var(--really-green);
+        filter: drop-shadow(0 0 12px var(--really-green));
+    }
+}
+
+/* ---------- SECTION (Shared Logic) ---------- */
+.section {
+    height: 100vh;
+    scroll-snap-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* This is the magic for "size-friendly" dynamic resizing */
+    background-size: cover;      /* Scales image to fill screen without stretching */
+    background-position: center;  /* Keeps the focus on the middle of the photo */
+    background-repeat: no-repeat;
+    background-attachment: scroll; /* Better for mobile performance */
+}
+
+/* ---------- BACKGROUNDS (Specific Images) ---------- */
+.section-one { 
+    background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), 
+                      url("images/mrg.JPG"); 
+}
+
+.section-two { 
+    background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), 
+                      url("images/phu-qoc.png"); 
+}
+
+.section-three { 
+    background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), 
+                      url("images/uw.jpg"); 
+}
+
+.section-four { 
+    background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), 
+                      url("images/anniver.jpg"); 
+}
+
+.together { letter-spacing: 0; }
+.hero { display: flex; flex-direction: column; gap: 16px; }
+.hero-line { letter-spacing: 0.55em; margin-right: -0.55em; }
+
+.details {
+    margin-top: 24px;
+    font-size: clamp(1.05rem, 2vw, 1.4rem);
+    letter-spacing: 0.18em;
+    color: rgba(255,255,255,0.95);
+}
+.details .names { font-weight: 800; }
+.details .date { opacity: 0.85; margin-top: 6px; }
+
+@media (max-width: 768px) {
+    .glass { padding: 30px 34px; }
+    h1 { letter-spacing: 0.3em; }
+    .hero-line { letter-spacing: 0.3em; margin-right: -0.3em; }
+}
